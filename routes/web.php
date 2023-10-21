@@ -19,13 +19,15 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('Home', [
-        "title" => "Home"
+        "title" => "Home",
+        "active" => 'home'
     ]);
 });
 
 Route::get('/about', function () {
     return view('About', [
         "title" => "About",
+        "active" => "about",
         "name" => "Abdul Jalal",
         "email" => "abduljalal@gmail.com",
         "image" => "https://down-id.img.susercontent.com/file/8b4f93a3afaa5328153737d74ccfa392"

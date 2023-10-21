@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
+
+        $posts = Post::latest();
+
+        
+
         return view('Posts', [
             "title" => "All Posts",
             "active" => "posts",
-            "posts" => Post::latest()->get()
+            "posts" => Post::latest()->filter(request(['search', 'category']))->get()
         ]);
     }
 
