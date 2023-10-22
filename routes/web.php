@@ -48,3 +48,5 @@ Route::get('/categories', function (){
     ]);
 });
 
+
+Route::get('/login', [LoginController::class,'index']);
