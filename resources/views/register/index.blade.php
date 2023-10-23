@@ -9,20 +9,41 @@
             <form action="/register" method="post">
                 @csrf
                 <div class="form-floating">
-                    <input type="text" name="name" id="name" class="form-control rounded-top" placeholder="Name" required autofocus>
+                    <input type="text" name="name" id="name" class="form-control rounded-top @error('name') is-invalid @enderror" placeholder="Name"  autofocus>
                     <label for="name">Name</label>
+                    @error('name')
+                    <div class="invalid-feedback">
+                       {{ $message }}
+                    </div>
+                    @enderror
+                    
                 </div>
                 <div class="form-floating">
-                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
+                    <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username"  autofocus>
                     <label for="username">Username</label>
+                    @error('username')
+                    <div class="invalid-feedback">
+                       {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="form-floating">
-                    <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email address"  autofocus>
                     <label for="email">Email Address</label>
+                    @error('email')
+                    <div class="invalid-feedback">
+                       {{ $message }}
+                    </div>
+                    @enderror
                 </div> 
                 <div class="form-floating">
-                    <input type="password" name="password" id="password" class="form-control rounded-bottom" placeholder="Password" required>
+                    <input type="password" name="password" id="password" class="form-control rounded-bottom @error('password') is-invalid @enderror" placeholder="Password" >
                     <label for="password">Password</label>
+                    @error('password')
+                    <div class="invalid-feedback">
+                       {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 
                 
