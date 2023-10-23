@@ -14,13 +14,21 @@
         @endif
         <main class="form-signin">
             <h1 class="h3 mb-3 font-weight-normal text-center">Please Login</h1>
-            <form >
+            <form action="/login" method="post">
+                @csrf
                 <div class="form-floating">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email address" required autofocus value="{{ old('email') }}">
+                    <label for="email">Email Address</label>
+                    @error('email')
+                    <div class="invalid-feedback">
+                       {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 
                 <div class="form-floating">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    <label for="password">Password</label>
                 </div>
                
                 <button class="w-100 btn btn-lg btn-primary btn-block" type="submit">Login</button>
