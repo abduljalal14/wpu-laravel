@@ -12,6 +12,16 @@
               </button>
           </div>
         @endif
+
+        @if (session()->has('loginError'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('loginError') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+        @endif
+
         <main class="form-signin">
             <h1 class="h3 mb-3 font-weight-normal text-center">Please Login</h1>
             <form action="/login" method="post">
