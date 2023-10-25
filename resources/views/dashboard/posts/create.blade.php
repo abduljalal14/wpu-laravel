@@ -20,16 +20,15 @@
         <button type="submit" class="btn btn-primary">Create Post</button>
       </form>
   </div>
-
   <script>
-    const title = document.querySelector('#title');
-    const slug = document.querySelector('#slug');
+       // membuat slug otomatis
+    const titleInput = document.getElementById("title");
+    const slugInput = document.getElementById("slug");
 
-    title.addEventListener('change', function(){
-        fetch('/dashboard/posts/checkSlug?title='+title.value)
-        .then( response => response.json())
-        .then (data => slug.value = data.slug);
+    titleInput.addEventListener("change", function (event) {
+            const titleValue = titleInput.value;
+            const slugValue = titleValue.toLowerCase().replace(/\s+/g, "-");
+            slugInput.value = slugValue;
     });
-
-  </script>
+</script>
 @endsection
