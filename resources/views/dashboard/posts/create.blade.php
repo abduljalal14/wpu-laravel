@@ -16,6 +16,20 @@
             <label for="slug">Slug</label>
             <input type="text" name="slug" class="form-control" id="slug">
         </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="custom-select" name="category">
+              <option selected>Select Category</option>
+              @foreach ($categories as $category)
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="body">Category</label>
+            <input id="body" type="hidden" name="body">
+            <trix-editor input="body"></trix-editor>
+        </div>
 
         <button type="submit" class="btn btn-primary">Create Post</button>
       </form>
