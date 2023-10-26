@@ -30,7 +30,11 @@
         <td>
           <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info text-light"><span data-feather="eye"></span></a>
           <a href="" class="badge bg-warning text-light"><span data-feather="edit"></span></a>
-          <a href="" class="badge bg-danger text-light"><span data-feather="x-circle"></span></a>
+          <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+          @method('delete')
+          @csrf
+          <button class="badge bg-danger text-light border-0"><span data-feather="x-circle" onclick="return confirm('Are You Sure?')"></button>
+          </form>
         </td>
       </tr>         
       @endforeach
