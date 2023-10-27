@@ -6,7 +6,7 @@
   </div>
 
   <div class="col-lg-8">
-      <form method="post" action="/dashboard/posts" class="mb-5">
+      <form method="post" action="/dashboard/posts" class="mb-5" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
           <label for="title">Title</label>
@@ -39,6 +39,16 @@
             </select>
         </div>
         <div class="form-group">
+          <label for="image">Post Image</label>
+          <img class="img-fluid" id="img-preview"  src="https://www.gravatar.com/avatar/fe0ff83b10821b15e0f7fd6385be24ef?s=64&d=identicon&r=PG">
+          <input onchange="previewImage(event)" type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
+          @error('image')
+            <div class="invalid-feedback">
+              {{ $message }}
+            </div>
+            @enderror
+        </div>
+        <div class="form-group">
             <label for="body">Category</label>
             @error('body')
             <p class="text-danger">{{ $message }}</p>
@@ -60,5 +70,16 @@
             const slugValue = titleValue.toLowerCase().replace(/\s+/g, "-");
             slugInput.value = slugValue;
     });
+
+    const imgInp = document.getElementById("image");
+    const blah = document.getElementById("img-preview");
+
+    imgInp.onchange = evt => {
+    const [file] = imgInp.files
+    if (file) {
+      blah.src = URL.createObjectURL(file)
+    }
+
+  };
 </script>
 @endsection
