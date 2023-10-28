@@ -6,7 +6,7 @@
   </div>
 
   <div class="col-lg-8">
-      <form method="post" action="/dashboard/posts/{{ $post->slug }}" class="mb-5">
+      <form method="post" action="/dashboard/posts/{{ $post->slug }}" class="mb-5" enctype="multipart/form-data">
         @method('put')
         @csrf
         <div class="form-group">
@@ -22,6 +22,21 @@
             <label for="slug">Slug</label>
             <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" autofocus value="{{ old('slug', $post->slug) }}">
             @error('slug')
+            <div class="invalid-feedback">
+              {{ $message }}
+            </div>
+            @enderror
+        </div>
+        <div class="form-group">
+          <label for="image">Post Image</label>
+          <input type="hidden" name="oldImage" value="{{ $post->image }}">
+          @if ($post->image)
+          <img src="{{ asset('storage/'.$post->image) }}" class="img-fluid mb-3 col-sm-5 d-block" id="img-preview">
+          @else
+          <img class="img-fluid mb-3 col-sm-5 d-block" id="img-preview">
+          @endif
+          <input onchange="previewImage(event)" type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
+          @error('image')
             <div class="invalid-feedback">
               {{ $message }}
             </div>
@@ -61,5 +76,16 @@
             const slugValue = titleValue.toLowerCase().replace(/\s+/g, "-");
             slugInput.value = slugValue;
     });
+
+    const imgInp = document.getElementById("image");
+    const blah = document.getElementById("img-preview");
+
+    imgInp.onchange = evt => {
+    const [file] = imgInp.files
+    if (file) {
+      blah.src = URL.createObjectURL(file)
+    }
+
+  };
 </script>
 @endsection

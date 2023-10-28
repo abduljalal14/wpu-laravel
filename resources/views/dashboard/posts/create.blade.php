@@ -40,7 +40,7 @@
         </div>
         <div class="form-group">
           <label for="image">Post Image</label>
-          <img class="img-fluid" id="img-preview"  src="https://www.gravatar.com/avatar/fe0ff83b10821b15e0f7fd6385be24ef?s=64&d=identicon&r=PG">
+          <img class="img-fluid mb-3 col-sm-5 d-block" id="img-preview">
           <input onchange="previewImage(event)" type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
           @error('image')
             <div class="invalid-feedback">
